@@ -1,0 +1,13 @@
+# Rewrite para SPA y API
+RewriteEngine On
+
+# Si es /api/*, servir archivos PHP directamente
+RewriteCond %{REQUEST_URI} ^/api/
+RewriteRule ^api/(.*)$ api/$1 [L]
+
+# Si existe archivo estático, servirlo
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Todo lo demás → index.php (SPA)
+RewriteRule ^ index.php [L]
